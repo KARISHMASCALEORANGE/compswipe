@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react'; // Import ChevronRight
+import { ChevronDown, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductCard from './card';
 import BreakfastCard from './BreakfastCard';
-import Sidebar from './Sidebar'; // Import Sidebar component
-import { useSwipeable } from 'react-swipeable'; // Import useSwipeable
+import Sidebar from './Sidebar';
+import { useSwipeable } from 'react-swipeable';
 
-// Custom Toggle Switch Component
 const UnitSwitch = ({ unit, toggleUnit }) => {
   return (
     <div
@@ -59,7 +58,7 @@ const CollapsibleSection = ({ title, count, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="mb-4">  
+    <div className="mb-4">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between p-3 bg-white rounded-lg shadow cursor-pointer"
@@ -82,27 +81,24 @@ const CollapsibleSection = ({ title, count, children }) => {
 };
 
 const Menu = () => {
-  const [cartItems, setCartItems] = useState([]); // Track cart items
-  const [unit, setUnit] = useState('kg'); // State for toggle between kg and plate
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Control sidebar visibility
+  const [cartItems, setCartItems] = useState([]);
+  const [unit, setUnit] = useState('kg');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const updateCartCount = (item, change) => {
     setCartItems((prevItems) => {
       const existingItemIndex = prevItems.findIndex((i) => i.title === item.title);
       if (existingItemIndex > -1) {
-        // Update existing item quantity
         const updatedItems = [...prevItems];
         if (change > 0) {
-            console.log("change",change)
           updatedItems[existingItemIndex].quantity += 1;
         } else if (updatedItems[existingItemIndex].quantity + 1 <= 0) {
-          updatedItems.splice(existingItemIndex, 1); // Remove item if quantity is zero or less
+          updatedItems.splice(existingItemIndex, 1);
         } else {
           updatedItems[existingItemIndex].quantity += 1;
         }
         return updatedItems;
       } else if (change > 0) {
-        // Add new item
         return [...prevItems, { ...item, quantity: change }];
       }
       return prevItems;
@@ -142,17 +138,19 @@ const Menu = () => {
     }
   ];
 
+  // Swipe handlers
   const handlers = useSwipeable({
     onSwipedLeft: () => setIsSidebarOpen(true),
     onSwipedRight: () => setIsSidebarOpen(false),
-    trackMouse: true // Enable mouse tracking for desktop
+    trackTouch: true, // Ensure touch events are tracked
+    preventScrollOnSwipe: true, // Prevent scrolling when swiping
   });
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
+    <div {...handlers} className="p-4 bg-gray-100 min-h-screen">
       {/* Cart Icon */}
       <div className="flex items-center justify-between mb-6 bg-green-600 p-4 rounded">
-        <h1 className="text-2xl font-bold text-white">&gt; Menu</h1>
+        <h1 className="text-2xl font-bold text-white">Menu</h1>
         <div className="flex items-center relative">
           <div className="relative">
             <ShoppingCart
@@ -194,9 +192,8 @@ const Menu = () => {
 
       {/* Sidebar */}
       {isSidebarOpen && (
-        <div {...handlers} className="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 transition-transform transform translate-x-0">
+        <div className="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 transition-transform transform translate-x-0">
           <Sidebar cartItems={cartItems} onClose={toggleSidebar} />
-          {/* ChevronLeft for closing the sidebar */}
           <button
             onClick={toggleSidebar}
             className="absolute top-1/2 right-0 p-4 bg-gray-600 text-white rounded-l-lg shadow-lg transform translate-x-0 transition-transform duration-300 ease-in-out"
