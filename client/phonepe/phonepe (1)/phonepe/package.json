@@ -1,0 +1,30 @@
+{
+  "name": "phonepe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Puneeth",
+  "license": "ISC",
+  "dependencies": {
+    "@heroicons/react": "^1.0.6",
+    "axios": "^1.7.7",
+    "axios-retry": "^4.5.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.21.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "sha256": "^0.2.0",
+    "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.11"
+  }
+}
