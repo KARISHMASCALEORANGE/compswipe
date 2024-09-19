@@ -26,20 +26,7 @@ const DB_COMMANDS = {
         SELECT * FROM event_cart WHERE eventcart_id = $1
     `,
     DELETE_EVENT_CART_BY_ID:`DELETE FROM event_cart WHERE eventcart_id = $1`,
-    INSERT_EVENT_ORDER:`INSERT INTO event_orders (
-    customer_id,
-    ordered_at,
-    delivery_status,
-    total_amount,
-    delivery_details,
-    event_order_details,
-    event_media,
-    customer_address,
-    payment_status,
-    event_order_status
-  ) VALUES (
-    $1, $2, $3, $4, $5, $6, $7, $8, $9, $10
-  ) RETURNING *`,
+  
     GET_ADDRESSES_BY_CUSTOMER_ID: `
     SELECT * FROM addresses WHERE customer_id = $1
     `,
@@ -48,8 +35,22 @@ const DB_COMMANDS = {
     getEventProductsQuery:'SELECT * FROM event_products;',
     eventMenuPageQuery:`SELECT * FROM all_products 
                    WHERE category_name = $1 
-                   LIMIT $2 OFFSET $3;`
+                   LIMIT $2 OFFSET $3;`,
+    GET_ORDER_DETAILS_BY_ID: `SELECT * FROM event_orders WHERE customer_id=$1;`,  
+    INSERT_EVENT_ORDER:`INSERT INTO event_orders (
+        customer_id,
+        delivery_status,
+        total_amount,
+        delivery_details,
+        event_order_details,
+        event_media,
+        customer_address,
+        payment_status,
+        event_order_status
+      ) VALUES (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9
+      ) RETURNING *`          
  };
-        
+
 
 module.exports = { DB_COMMANDS };

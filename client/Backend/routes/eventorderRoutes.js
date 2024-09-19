@@ -8,6 +8,10 @@ const eventController = require('../controllers/eventorderController');
 router.get('/products', eventController.fetchProducts);
 router.post('/cart/add', eventController.addToCart);
 
+router.get('/myorders',eventController.getOrderDetails);
+router.post('/transfer-cart-to-order', eventController.transferCartToOrder);
+
+
 
 // router.get('/menuPage',eventController.menuPage);   
 

@@ -1,4 +1,3 @@
-index.js
 const express = require('express');
 const port = 5000;
 const sha256 = require('sha256');
@@ -9,7 +8,7 @@ const crypto = require('crypto');
 app.use(express.json());
 const cors = require('cors');
 app.use(cors({
-    origin: 'http://localhost:3000' // Replace with your frontend's URL
+    origin: 'http://localhost:3000' 
   }));
 const PHONEPE_HOST_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox";
 const MERCHANT_ID = "PGTESTPAYUAT86";
@@ -75,7 +74,7 @@ app.get('/redirect-url/:merchantTransactionId', (req, res) => {
   const { merchantTransactionId } = req.params;
   console.log('The merchant Transaction id is', merchantTransactionId);
   if (merchantTransactionId) {
-    const xVerify = `sha256(/pg/v1/status/${MERCHANT_ID}/${merchantTransactionId} + SALT_KEY) + '###' + SALT_INDEX`;
+    const xVerify = sha256(`/pg/v1/status/${MERCHANT_ID}/${merchantTransactionId}` + SALT_KEY) + '###' + SALT_INDEX;
     const options = {
       method: 'get',
       url: `https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status/${MERCHANT_ID}/${merchantTransactionId}`,

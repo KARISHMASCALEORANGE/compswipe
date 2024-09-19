@@ -1,12 +1,16 @@
 import React from 'react';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
-import MenuItem from './MenuItem';        
+import MenuItem from './menu';        
 import HomePage from './HomePage';
 // import MyOrdersPage from './myorders';
-import PaymentForm from './components/PaymentForm';
+// import PaymentForm from './components/PaymentForm';
 
 import OrderDashboard from './myorders';
+import EventOrders from './myorders';
+// import FailurePage from './Failurepage';
+// import PendingPage from './PendingPage';
+// import OrderCard from './OrderCard';
 
 
 function App() {
@@ -16,9 +20,14 @@ function App() {
       <Routes>
         <Route path = "/home" element = {<HomePage/>}/>
         <Route path = "/menu" element = {<MenuItem/>}/>
-        {/* <Route path="/orders" element={<MyOrdersPage />} /> */}
-        <Route path = "/pay" element ={<PaymentForm/>}/>
-        <Route path = "/OrderDashboard " element ={<OrderDashboard />}/>
+       
+        {/* <Route path = "/pay" element ={<PaymentForm/>}/> */}
+        <Route path = "/OrderDashboard" element ={<OrderDashboard/>}/>
+        <Route path = "/EventOrders" element ={<EventOrders/>}/>
+        {/* <Route path ="/OrderCard" element = {<OrderCard/>}/> */}
+        {/* <Route path = "/success" element = {<SuccessPage/>}/> */}
+        {/* <Route path = "/failure" element = {<FailurePage/>}/>
+        <Route path = "/pending" element = {<PendingPage/>}/> */}
      
 
       </Routes>
