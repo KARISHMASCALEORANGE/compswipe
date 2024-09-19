@@ -793,3 +793,20 @@
 {"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T06:35:00.771Z"}
 {"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T06:35:01.072Z"}
 {"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T06:35:01.087Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T06:53:58.007Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T06:53:58.123Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T06:53:58.505Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T06:53:58.521Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T07:02:42.176Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T07:02:42.289Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T07:02:42.954Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T07:02:43.037Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T07:05:52.356Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T07:05:52.472Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T07:05:52.961Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T07:05:52.972Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T07:17:05.966Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T07:17:06.118Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T07:17:06.331Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T07:17:06.347Z"}
+{"code":"42P01","file":"parse_relation.c","length":111,"level":"error","line":"1452","message":"Error transferring cart to order:  relation \"event_orders\" does not exist","name":"error","position":"13","routine":"parserOpenTable","severity":"ERROR","stack":"error: relation \"event_orders\" does not exist\n    at C:\\Users\\Karishma\\Desktop\\compswipe\\compswipe\\client\\Backend\\node_modules\\pg\\lib\\client.js:526:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Object.insertEventOrder (C:\\Users\\Karishma\\Desktop\\compswipe\\compswipe\\client\\Backend\\models\\eventorderModels.js:110:20)\n    at async transferCartToOrder (C:\\Users\\Karishma\\Desktop\\compswipe\\compswipe\\client\\Backend\\controllers\\eventorderController.js:100:19)","timestamp":"2024-09-19T07:19:29.908Z"}

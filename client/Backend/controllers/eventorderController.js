@@ -113,12 +113,34 @@ const transferCartToOrder = async (req, res) => {
 
 
 const orderbuyagain = async(req,res)=>{
+  const customer_id = 1
+
   try{
     console.log("orderbuyagain:",req.body);
+
+    const cartData = req.body;
+    const orderData = {
+      customer_id: customer_id,
+      // ordered_at: cartData.order_date, 
+      delivery_status: 'Pending', 
+      total_amount: cartData.total_amount,
+      delivery_details: cartData.delivery_details,
+      cart_order_details: cartData.event_order_details,
+      event_media: null, 
+      customer_address: cartData.customer_address,
+      payment_status: 'Unpaid', 
+      event_order_status: 'New' 
+    };
+    console.log("ordered data",orderData);
+    const order = await cartModel.insertEventOrder(orderData);
+    console.log("order",order);
+    
   }catch(error){
     console.log("error in adding data to my orders table");
 
   }
+
+ 
 }
 
 //controller

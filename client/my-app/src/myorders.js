@@ -32,8 +32,6 @@ const OrderDashboard = () => {
       
       
   })
-  // console.log("order details",orderedDetails);
-   
 
 
   const formattedOrders = OrdersData.map((order) => {
@@ -63,7 +61,6 @@ const OrderDashboard = () => {
   };
 
 
-
   const handleBuyAgain = async (orderedId) => {
     const orderedDetails = OrdersData.find((order) => order.eventorder_generated_id === orderedId);
   
@@ -74,30 +71,36 @@ const OrderDashboard = () => {
         customer_address: orderedDetails.customer_address,
         total_amount: orderedDetails.total_amount,
       });
-  
-      // This will still print the old value of cartData
+
+      // Call buyagainfun after setting cartData
+      buyagainfun({
+        event_order_details: orderedDetails.event_order_details,
+        customer_address: orderedDetails.customer_address,
+        total_amount: orderedDetails.total_amount,
+      });
+
       console.log('Ordered Details:', orderedDetails);
-      console.log('Cart Data (before update):', cartData); // Will log the previous state of cartData, not the updated one
     } else {
       console.log('Order not found for this ID:', orderedId);
     }
-   
   };
 
-  //
-  
-  // Use this effect to log the updated cartData after it's been set
+ 
+  const buyagainfun = async (updatedCartData) => {
+    if (updatedCartData) {
+      await orderbuyagain(updatedCartData); // Assuming orderbuyagain is your API call function
+    }
+  };
+
+  // useEffect to log cartData whenever it changes
   useEffect(() => {
     if (cartData) {
       console.log('Updated Cart Data:', cartData);
     }
-    const buyagainfun = async()=>{
-      await orderbuyagain(cartData);
-    }
-    buyagainfun()
-    
-  }, [cartData]); // This will trigger every time cartData changes
+  }, [cartData]);
   
+  
+ 
   
   return (
     <div className="container mx-auto p-4">

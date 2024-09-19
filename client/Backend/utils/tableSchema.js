@@ -76,35 +76,34 @@ function createCustomerTableQuery() {
       END;
       $$ LANGUAGE plpgsql;
   
-     -- Drop the trigger if it already exists
-   DROP TRIGGER IF EXISTS eventorder_id_trigger ON event_orders;
-
-    -- Create the event_orders table
-    CREATE TABLE IF NOT EXISTS event_orders (
-      eventorder_id SERIAL PRIMARY KEY,
-      eventorder_generated_id VARCHAR(255) UNIQUE,
-      customer_id INTEGER,
-      ordered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      delivery_status VARCHAR(50),
-      total_amount FLOAT NOT NULL,
-      PaymentId INTEGER,
-      delivery_details JSON,
-      event_order_details JSON,
-      event_media JSON,
-      customer_address JSON,
-      payment_status VARCHAR(50),
-      event_order_status VARCHAR(50),
-      FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-      FOREIGN KEY (PaymentId) REFERENCES payment(PaymentId)
-    );
+      -- Drop the trigger if it already exists
+      DROP TRIGGER IF EXISTS eventorder_id_trigger ON event_orders;
+  
+      -- Create the event_orders table
+      CREATE TABLE IF NOT EXISTS event_orders (
+          eventorder_id SERIAL PRIMARY KEY,
+          eventorder_generated_id VARCHAR(255) UNIQUE,
+          customer_id INTEGER,
+          ordered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          delivery_status VARCHAR(50),
+          total_amount FLOAT NOT NULL,
+          PaymentId INTEGER,
+          delivery_details JSON,
+          event_order_details JSON,
+          event_media JSON,
+          customer_address JSON,
+          payment_status VARCHAR(50),
+          event_order_status VARCHAR(50),
+          FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+          FOREIGN KEY (PaymentId) REFERENCES payment(PaymentId)
+      );
     
 
-    -- Create trigger that calls the function to generate eventorder_generated_id
-    CREATE TRIGGER eventorder_id_trigger
-    BEFORE INSERT ON event_orders
-    FOR EACH ROW
-    EXECUTE FUNCTION generate_eventorder_id();
-
+      -- Create trigger that calls the function to generate eventorder_generated_id
+      CREATE TRIGGER eventorder_id_trigger
+      BEFORE INSERT ON event_orders
+      FOR EACH ROW
+      EXECUTE FUNCTION generate_eventorder_id();
   `;
 }
 
@@ -133,7 +132,7 @@ function createCustomerTableQuery() {
       CREATE TABLE IF NOT EXISTS addresses (
         address_id SERIAL PRIMARY KEY,
         tag VARCHAR(50),
-        line1 VARCHAR(255) NOT NULL,
+        line1 VARCHAR(255) NOT NULL,  
         line2 VARCHAR(255),
         pincode INTEGER,
         group_id INTEGER,

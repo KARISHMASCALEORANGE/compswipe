@@ -106,7 +106,7 @@ const insertEventOrder = async (orderData) => {
 
     console.log("cart_order_details JSON: ", cartOrderDetailsJson);
     console.log("customer_address JSON: ", customerAddressJson);
-
+    
     const result = await client.query(DB_COMMANDS.INSERT_EVENT_ORDER, [
       orderData.customer_id,
       orderData.delivery_status,
@@ -140,6 +140,7 @@ const deleteCart = async (eventcart_id) => {
   const values = [eventcart_id];
   await client.query(query,values);
 };
+
 
 module.exports = {
 
