@@ -10,6 +10,7 @@ router.post('/cart/add', eventController.addToCart);
 
 router.get('/myorders',eventController.getOrderDetails);
 router.post('/transfer-cart-to-order', eventController.transferCartToOrder);
+router.post('/orderbuyagain',eventController.orderbuyagain);
 
 
 

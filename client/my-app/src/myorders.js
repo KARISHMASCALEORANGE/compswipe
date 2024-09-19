@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { myorders } from './action';
+import { myorders, orderbuyagain } from './action';
 import { addtocart } from './action';
 
 const OrderDashboard = () => {
   const [openOrderId, setOpenOrderId] = useState(null);
   const [OrdersData, setOrderData] = useState([]);
   const [cartData, setCartData] = useState(null);  
-  const [cartObject,setcartObject]= useState('');
-  const [amount,setamount] = useState('');
-  const [address,setaddress]=useState('');
+
+ 
 
 
   const formatOrderDate = (dateString) => {
@@ -23,10 +22,21 @@ const OrderDashboard = () => {
     };
     fetchOrders();
   }, []);
+  const orderedDetails = OrdersData.map((order)=>{
+      // console.log("order",order);
+      return {
+        total_amount: order.total_amount,
+        event_order_details: order.event_order_details,
+        customer_address: order.customer_address,
+      };
+      
+      
+  })
+  // console.log("order details",orderedDetails);
+   
 
 
   const formattedOrders = OrdersData.map((order) => {
-  
     const formattedItems = order.event_order_details.map((item) => ({
       name: item.productname,
       plates: item.minunitsperplate,
@@ -54,23 +64,41 @@ const OrderDashboard = () => {
 
 
 
-  const handleBuyAgain = async(order) => {
-    setcartObject(order.event_order_details);
-    setaddress(order.customer_address);
-    setamount(order.amount);
-    const cart = {
-      total_amount: amount,
-      event_order_details: cartObject, 
-      customer_address: address,
-    };
-    setCartData(cart);
-    console.log("cart",cart);
-    if (cartData) {
-        console.log(cartData);
-        await addtocart(cartData);
-      }
+  const handleBuyAgain = async (orderedId) => {
+    const orderedDetails = OrdersData.find((order) => order.eventorder_generated_id === orderedId);
+  
+    if (orderedDetails) {
+      // Set the cart data as an object containing event_order_details, customer_address, and total_amount
+      setCartData({
+        event_order_details: orderedDetails.event_order_details,
+        customer_address: orderedDetails.customer_address,
+        total_amount: orderedDetails.total_amount,
+      });
+  
+      // This will still print the old value of cartData
+      console.log('Ordered Details:', orderedDetails);
+      console.log('Cart Data (before update):', cartData); // Will log the previous state of cartData, not the updated one
+    } else {
+      console.log('Order not found for this ID:', orderedId);
+    }
+   
   };
 
+  //
+  
+  // Use this effect to log the updated cartData after it's been set
+  useEffect(() => {
+    if (cartData) {
+      console.log('Updated Cart Data:', cartData);
+    }
+    const buyagainfun = async()=>{
+      await orderbuyagain(cartData);
+    }
+    buyagainfun()
+    
+  }, [cartData]); // This will trigger every time cartData changes
+  
+  
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4 bg-green-600 text-white p-2">Your Orders</h1>
@@ -78,7 +106,7 @@ const OrderDashboard = () => {
         <button className="bg-orange-100 text-orange-500 border border-orange-500 rounded-full px-4 py-1">CORPORATE</button>
         <button className="bg-blue-100 text-blue-500 border border-blue-500 rounded-full px-4 py-1">EVENT</button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className=" gap-4">
         {formattedOrders.length > 0 && formattedOrders.map((order) => (
           <div key={order.id} className="border rounded-lg p-4 cursor-pointer" onClick={() => handleOrderClick(order)}>
             <div className="flex justify-between items-center mb-2">
@@ -87,7 +115,7 @@ const OrderDashboard = () => {
                 <p>Date of Order: {order.date}</p>
                 <p>Amount: ₹{order.amount}</p>
               </div>
-              <button className="bg-red-100 text-red-500 px-2 py-1 rounded" onClick={() => handleBuyAgain(order)}>Buy again</button>
+              <button className="bg-red-100 text-red-500 px-2 py-1 rounded" onClick={() => handleBuyAgain(order.id)}>Buy again</button>
             </div>
             <div className="bg-gray-100 p-2 rounded">
               <h3 className="text-center font-bold mb-2">Order progress</h3>

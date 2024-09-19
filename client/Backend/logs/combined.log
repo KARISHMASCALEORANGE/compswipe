@@ -776,3 +776,20 @@
 {"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T05:20:32.011Z"}
 {"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T05:20:58.604Z"}
 {"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T05:20:59.537Z"}
+{"code":"22P02","file":"numutils.c","length":140,"level":"error","line":"620","message":"Error transferring cart to order:  invalid input syntax for type integer: \"\"","name":"error","routine":"pg_strtoint32_safe","severity":"ERROR","stack":"error: invalid input syntax for type integer: \"\"\n    at C:\\Users\\Karishma\\Desktop\\compswipe\\compswipe\\client\\Backend\\node_modules\\pg\\lib\\client.js:526:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Object.getCartById (C:\\Users\\Karishma\\Desktop\\compswipe\\compswipe\\client\\Backend\\models\\eventorderModels.js:133:18)\n    at async transferCartToOrder (C:\\Users\\Karishma\\Desktop\\compswipe\\compswipe\\client\\Backend\\controllers\\eventorderController.js:75:18)","timestamp":"2024-09-19T05:34:10.950Z","where":"unnamed portal parameter $1 = ''"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T05:49:39.809Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T05:49:39.879Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T05:49:40.120Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T05:49:40.127Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T06:31:40.617Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T06:31:40.778Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T06:31:41.428Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T06:31:41.440Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T06:32:52.979Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T06:32:53.082Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T06:32:53.306Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T06:32:53.322Z"}
+{"level":"info","message":"Database created or already exists","timestamp":"2024-09-19T06:35:00.646Z"}
+{"level":"info","message":"Connected to the Caterorange DB","timestamp":"2024-09-19T06:35:00.771Z"}
+{"level":"info","message":"Tables created successfully","timestamp":"2024-09-19T06:35:01.072Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-09-19T06:35:01.087Z"}

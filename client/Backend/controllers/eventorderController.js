@@ -55,7 +55,7 @@ const getOrderDetails = async (req, res) => {
       return res.status(404).json({ message: 'Order not found' });
     }
 
-    console.log("order",order);
+    // console.log("order",order);
     res.status(200).json(order);
 
   } catch (error) {
@@ -111,11 +111,22 @@ const transferCartToOrder = async (req, res) => {
   }
 };
 
+
+const orderbuyagain = async(req,res)=>{
+  try{
+    console.log("orderbuyagain:",req.body);
+  }catch(error){
+    console.log("error in adding data to my orders table");
+
+  }
+}
+
 //controller
 
 module.exports = {
   fetchProducts,
   addToCart,
   getOrderDetails,
-  transferCartToOrder
+  transferCartToOrder,
+  orderbuyagain
 };

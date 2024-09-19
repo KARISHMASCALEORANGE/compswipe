@@ -265,8 +265,8 @@ const handleBlur = (itemId, quantity, minUnitsPerPlate) => {
     };
     try {
       const response = await axios.post('http://localhost:5000/api/transfer-cart-to-order', {
-        cartId: id,   // The ID of the cart (or user session/cart token)
-        items: cartItems // The actual cart items array with product IDs and quantities
+        cartId: id,   
+        items: cartItems 
       }, {
         headers: {
           'Content-Type': 'application/json'  

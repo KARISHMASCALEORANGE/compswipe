@@ -82,14 +82,14 @@ const addCart = async (customer_id, total_amount, cart_order_details, address) =
 
 const getOrderDetailsById = async (customer_id) => {
   const query = DB_COMMANDS.GET_ORDER_DETAILS_BY_ID;
-  console.log(query);
+  // console.log(query);
   
   const values = [customer_id];
-  console.log("id",customer_id);
+  // console.log("id",customer_id);
   
   try {
     const result = await client.query(query,values);
-    console.log(result.rows);
+    // console.log(result.rows);
     return result.rows; 
   } catch (error) {
     logger.error('Error retrieving event order details:', error);
